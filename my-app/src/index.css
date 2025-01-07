@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --primary: #646cff;
+}
+
+body{
+  @apply overflow-x-hidden
+}
+html {
+  font-family: "Manrope";
+}
+
+.main {
+  @apply w-[90%] lg:w-[80%] mx-auto;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+input{
+  @apply text-[16px] p-3 border rounded-lg w-full outline-none
+}
+
+.primary__btn {
+  @apply rounded-lg p-2 px-6 bg-[var(--primary)] text-white text-sm
+}
+.secondary__btn {
+  @apply rounded-lg p-2 px-6 border border-[var(--primary)] bg-purple-50 text-[var(--primary)] text-sm 
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+
+.animateSlide{
+  animation: slide infinite 15s linear;
+}
+
+.shape{
+  clip-path: ellipse(200px 20px);
+}
+
+.landing-bg{
+  background-image: url('./assets/landing-bg.png');
+  background-size: cover;
+}
+
+.bg-footer{
+  background-image: url('./assets/footer-bg.png');
+  background-size: cover;
+}
+
+.spinbg{
+  animation: spin 15s infinite linear;
+}
+
+
+@keyframes slide {
+  from{
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+@keyframes spin {
+  from{
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
