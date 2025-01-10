@@ -8,6 +8,8 @@ import ForgotP from "./forgotP";
 import LoggedIn from "./layout/LoggedIn";
 import PassReset from "./passReset";
 import Login from "./Login";
+import CreateEvent from "./createEvent";
+import CreateEvent2 from "./createEvent2";
 
 const router = createBrowserRouter([
  
@@ -44,15 +46,24 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
-    element: <LoggedIn />,
-    children: [
-      {
-        path: "login",
-        element: <Login />,
-      },
-    ],
-  },
+    path: "loggedIn",
+    element: <LoggedIn/>
+    
+    },
+    
+  {
+    path: "createEvent2",
+    element: <CreateEvent2/>
+    
+    },
+ 
+  {
+    path: "createEvent",
+    element: <CreateEvent/>
+    
+    },
+ 
+
 ]);
 
 export default router;

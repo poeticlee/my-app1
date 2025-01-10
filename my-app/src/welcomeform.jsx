@@ -31,7 +31,8 @@ const WelcomeForm = () => {
         localStorage.setItem("user", JSON.stringify(data.email));
 
         // Navigate to the dashboard page
-        navigate("/dashBoard");
+        navigate("/loggedIn");
+
       }
       // eslint-disable-next-line no-unused-vars
     } catch (error) {
@@ -45,7 +46,7 @@ const WelcomeForm = () => {
 
   return (
     <div>
-      <img src="/src/assets/logoEvent.png" alt="Logo" className=" h-[60px] "/>
+      <img src="/src/assets/logoEvent.png" alt="Logo" className=" h-[60px]  forced-color-adjust-auto"/>
       <h4 className=" text-3xl font-bold text-[#292929] pt-3">
         Welcome back to &nbsp;
         <span className="text-[var(--primary)]">invitrio</span>

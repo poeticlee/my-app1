@@ -15,9 +15,9 @@ export default function Auth() {
             className="hidden lg:block h-full object-contain  spinbg"
           />
           <img
-            src="/src/assets/logoEvent.png"
+            src="/src/assets/reallogo.png"
             alt="Logo"
-            className=" hidden lg:block absolute top-1/2 translate-x-1/2 -translate-y-1/2 right-1/2 h-[60px] "
+            className=" hidden lg:block absolute top-1/2 translate-x-1/2 -translate-y-1/2 right-1/2 h-[190px] w-[20%]"
           />
         </div>
       </div>
