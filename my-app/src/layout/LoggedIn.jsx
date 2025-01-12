@@ -59,29 +59,31 @@ const App = () => {
     return user.firstName;
   };
 
+ 
+
+
   const data = [
     {
-      event: "Beyond Theory",
-      noRsvp: "100",
-      guestInvited: "300",
-      status: "Developer",
-      action: "",
+      event: "Conference 2025",
+      noRsvp: 100,
+      guestInvited: 150,
+      status: "Processing", // Options: "Processing", "Pending", "Completed"
+      action:"Processing"
     },
     {
-      event: "Dev Fest",
-      noRsvp: "200",
-      guestInvited: "250",
-      status: "Designer",
-      action: "",
+      event: "Product Launch",
+      noRsvp: 50,
+      guestInvited: 80,
+      status: "Pending",
     },
     {
-      event: "Startup Fest",
-      noRsvp: "350",
-      guestInvited: "500",
-      status: "Product Manager",
-      action: "",
+      event: "Annual Meetup",
+      noRsvp: 200,
+      guestInvited: 250,
+      status: "Completed",
     },
   ];
+  
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -226,11 +228,12 @@ const App = () => {
             </button>
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200">
+
+        <div className="overflow-x-auto max-h-[300px] border border-gray-300 rounded-md">
+          <table className="min-w-full bg-white border-collapse border border-gray-200">
             {/* Table Head */}
             <thead>
-              <tr className="bg-gray-100 text-[18px]">
+              <tr className="bg-gray-100 text-[16px]">
                 <th className="py-2 px-4 border-b text-left text-gray-700 font-bold">
                   Event Name
                 </th>
@@ -250,8 +253,8 @@ const App = () => {
             </thead>
             {/* Table Body */}
             <tbody>
-              {data.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
+              {data.map((item, index) => (
+                <tr key={index} className="hover:bg-gray-50">
                   <td className="py-2 px-4 border-b text-gray-600">
                     {item.event}
                   </td>
@@ -262,10 +265,25 @@ const App = () => {
                     {item.guestInvited}
                   </td>
                   <td className="py-2 px-4 border-b text-gray-600">
-                    {item.status}
+                      {/* Conditional Buttons */}
+                      {item.status === "Processing" && (
+                      <button className="py-1 px-3 bg-blue-200 text-blue-700 text-sm font-medium rounded">
+                        Processing
+                      </button>
+                    )}
+                    {item.status === "Pending" && (
+                      <button className="py-1 px-3 bg-red-200 text-red-700 text-sm font-medium rounded">
+                        Pending
+                      </button>
+                    )}
+                    {item.status === "Completed" && (
+                      <button className="py-1 px-3 bg-green-200 text-green-700 text-sm font-medium rounded">
+                        Completed
+                      </button>
+                    )}
                   </td>
-                  <td className="py-2 px-4 border-b text-gray-600">
-                    {item.action}
+                  <td className=" flex py-2 px-4 border-b text-gray-600">
+                  <p>edit</p>  <p>view</p>
                   </td>
                 </tr>
               ))}
@@ -273,95 +291,15 @@ const App = () => {
           </table>
         </div>
 
-        <div className="flex items-center justify-center h-screen bg-gray-100">
-          {/* Create Event Button */}
-
-          {/* Popup Form */}
-          {isOpen && (
-            <div
-              className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-              onClick={togglePopup}
-            >
-              <div
-                className="w-[920px] h-[900px] bg-white rounded-lg shadow-lg p-6 flex flex-col relative"
-                onClick={(e) => e.stopPropagation()} // Prevent closing on form click
-              >
-                {/* Close Button */}
-                <button
-                  onClick={togglePopup}
-                  className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl"
-                >
-                  &times;
-                </button>
-
-                {/* Form Content */}
-                <h2 className="text-2xl font-bold mb-6">Create Event</h2>
-                <form className="flex flex-col space-y-4">
-         
-    <div >
-      <div>
-        <h2>Create Event</h2>
-      </div>
-      <div className="grid gap-[20px] ">
-        
-          <div className="flex ">
-            <label>Event Name</label>
-            <input type="text" />
-            <button className="bg-blue-800 text-[#ffffff]">Add Description</button>
-          </div>
-        
-        <div className="flex">
-          <label>Date</label>  
-          <input type="date" />
-          <label>Time</label>
-          <input type="time" /> <label>Duration:</label>
-          <select id="time-options" name="time-options">
-            <option value="30m">30m</option>
-            <option value="1hr">1hr</option>
-            <option value="1hr30m">1hr 30m</option>
-            <option value="1hr30m">2hr </option>
-            <option value="1hr30m">2hr 30m</option>
-            <option value="1hr30m">3hr</option>
-            <option value="1hr30m">3hr 30m</option>
-            <option value="1hr30m">4hr</option>
-          </select>
-        </div>
-        <div className="flex">
-        
-          <label>Add Guest</label>
-          <input type="text" />
-          <button>Add Guest</button>
-        </div>
-        <div>
-          <img
-            src={user.picture}
-            alt="User"
-            className="w-10 h-10 rounded-full"
-          />
-          <img
-            src={user.picture}
-            alt="User"
-            className="w-10 h-10 rounded-full"
-          />
-          <img
-            src={user.picture}
-            alt="User"
-            className="w-10 h-10 rounded-full"
-          />
-        </div>
-      </div>
-    </div>
-                </form>
-              </div>
-            </div>
-          )}
-        </div>
         <div className="flex">
           <div className="w-96 gap-[150px] mt-10">
             <p className="   font-bold text-[24px] mb-4">Invite Update</p>
             <Doughnut data={dataDou} options={options} />
           </div>
-          <div> <p className="font-bold text-[24px] mb-4">Recent Activity</p></div>
+          <div>
+            {" "}
+            <p className="font-bold text-[24px] mb-4">Recent Activity</p>
+          </div>
         </div>
         {/* Content Area */}
         <div className="flex-1 p-5 overflow-auto">

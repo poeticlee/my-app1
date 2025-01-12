@@ -26,13 +26,14 @@ const WelcomeForm = () => {
           password: data.password,
         }
       );
-
-      if (response.status === 201) {
-        localStorage.setItem("user", JSON.stringify(data.email));
+        console.log(response)
+      if (response.status === 200) {
+        //save the token in the localstorage
+        localStorage.setItem("user", JSON.stringify(response.data.token));
 
         // Navigate to the dashboard page
         navigate("/loggedIn");
-
+      
       }
       // eslint-disable-next-line no-unused-vars
     } catch (error) {
