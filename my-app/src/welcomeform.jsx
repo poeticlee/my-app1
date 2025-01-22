@@ -29,10 +29,12 @@ const WelcomeForm = () => {
         console.log(response)
       if (response.status === 200) {
         //save the token in the localstorage
-        localStorage.setItem("user", JSON.stringify(response.data.token));
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+
 
         // Navigate to the dashboard page
-        navigate("/loggedIn");
+        navigate("/dashboard");
       
       }
       // eslint-disable-next-line no-unused-vars

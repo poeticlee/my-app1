@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState }  from "react";
 import { useForm } from "react-hook-form";
 import Button from "./ui-components/button";
 
@@ -9,8 +9,10 @@ import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import PassInput from "./ui-components/passInput";
 import "./index.css"; // Or the file where you defined the font-face
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+
   const {
     register,
     handleSubmit,
@@ -24,19 +26,31 @@ const SignUp = () => {
   });
 
   const password = watch("password"); // Watch password for comparison
-
+  const navigate = useNavigate();
+  
+ const [loading, setLoading] = useState(false);
   const onSubmit = async (data) => {
+
+    setLoading(true);
     try {
       const response = await axios.post('https://jobbertrack.onrender.com/auth/signup',
         {
-          firstName: data.firstName,
-          lastName: data.lastName,
+          firstname: data.firstName,
+          lastname: data.lastName,
           email: data.email,
           password: data.password,
 
         }
       );
-console.log(response)
+      console.log(response)
+      if (response.status === 201) {
+       
+
+        // Navigate to the dashboard page
+        navigate("/otppage");
+      
+      }
+
       const { token } = response.data;
       localStorage.setItem("jwtToken", token);
       toast.success("Registration successful!");
@@ -49,11 +63,12 @@ console.log(response)
       });
       toast.error("Registration failed!");
     }
+    setLoading(false);
   };
 
   return (
     <div >
-      <img src="/src/assets/logoEvent.png" alt="Logo" />
+      <img src="/src/assets/logoInvite.png" alt="Logo" />
       <h4 className=" text-3xl font-bold text-[#292929] pt-2">
         Get started with <span className=" text-[var(--primary)]">invitrio</span>
       </h4>
@@ -73,7 +88,7 @@ console.log(response)
                 required: "First name is required.",
               })}
             />
-            {errors.firstName && (
+            {errors.firstname && (
               <p style={{ color: "red", fontSize: "12px" }}>
                 {errors.firstName.message}
               </p>
@@ -89,7 +104,7 @@ console.log(response)
                 required: "Last name is required.",
               })}
             />
-            {errors.lastName && (
+            {errors.lastname && (
               <p style={{ color: "red", fontSize: "12px" }}>
                 {errors.lastName.message}
               </p>
@@ -166,9 +181,9 @@ console.log(response)
           </p>
         )}
         <Button
-          label="Submit"
+          label={loading ? "Loading..." : "Sign up "}
           type="submit"
-          disabled={!isValid}
+          disabled={loading}
           style={{
             backgroundColor: isValid ? "#6460FF" : "gray",
             color: "white",
