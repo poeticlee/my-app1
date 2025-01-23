@@ -26,7 +26,7 @@ export default function OTPPage() {
 
   const handleVerify = async () => {
     try {
-      const response = await axios.post("https://jobbertrack.onrender.com/auth/reset-password/verify-email", {
+      const response = await axios.post("https://jobbertrack.onrender.com/auth/verify-email", {
         email: user?.email, // Send the user's email
         otp: otp, // Send the entered OTP
       });
@@ -49,7 +49,7 @@ export default function OTPPage() {
         <p className="text-[20px] font-bold">Enter verification code.</p>
         <p>
           Enter the verification code we just sent
-          <br /> to your email {user.email} to get the party started. 🎉
+          <br /> to your email to get the party started. 🎉
         </p>
       </div>
 
