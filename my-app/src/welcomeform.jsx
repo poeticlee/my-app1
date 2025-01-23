@@ -49,7 +49,7 @@ const WelcomeForm = () => {
 
   return (
     <div>
-      <img src="/src/assets/logoEvent.png" alt="Logo" className=" h-[60px]  forced-color-adjust-auto"/>
+      <img src="/src/assets/logoInvite.png" alt="Logo" className=" h-[60px]  forced-color-adjust-auto"/>
       <h4 className=" text-3xl font-bold text-[#292929] pt-3">
         Welcome back to &nbsp;
         <span className="text-[var(--primary)]">invitrio</span>
