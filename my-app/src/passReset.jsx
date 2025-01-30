@@ -15,7 +15,7 @@ const PassReset = () => {
   const onSubmit = async () => {
     try {
       // Simulate an API call
-      const response = await axios.post("http://example.com/api/reset-password");
+      const response = await axios.post( "https://jobbertrack.onrender.com/auth/reset-password");
 
       if (response.status === 200) {
         toast.success("Password reset link has been sent to your email.");

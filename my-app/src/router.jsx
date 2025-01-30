@@ -12,6 +12,7 @@ import CreateEvent from "./createEvent";
 import DashBoard from "./dashBoard";
 import Calendarni from "./calendar";
 import Otppage from "./otppage";
+import EventDetails from "./EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,9 @@ const router = createBrowserRouter([
         path: "viewCalendar",
         element: <Calendarni />,
       },
+       {path: "/event/:id" ,
+        element: <EventDetails />} 
+
     ],
   },
 ]);

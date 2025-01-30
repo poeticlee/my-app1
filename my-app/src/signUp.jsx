@@ -29,42 +29,40 @@ const SignUp = () => {
   const navigate = useNavigate();
   
  const [loading, setLoading] = useState(false);
-  const onSubmit = async (data) => {
+ const onSubmit = async (data) => {
+  setLoading(true);
+  try {
+    const response = await axios.post("https://jobbertrack.onrender.com/auth/signup", {
+      firstname: data.firstName,
+      lastname: data.lastName,
+      email: data.email,
+      password: data.password,
+    });
 
-    setLoading(true);
-    try {
-      const response = await axios.post('https://jobbertrack.onrender.com/auth/signup',
-        {
-          firstname: data.firstName,
-          lastname: data.lastName,
-          email: data.email,
-          password: data.password,
+    console.log(response);
 
-        }
-      );
-      console.log(response)
-      if (response.status === 201) {
-       
-
-        // Navigate to the dashboard page
-        navigate("/otppage");
+    if (response.status === 201) {
+      // Save token and email to localStorage
+      localStorage.setItem("user", JSON.stringify({ email: data.email, token: response.data.token }));
+      console.log(localStorage.getItem("user"));
       
-      }
-
-      const { token } = response.data;
-      localStorage.setItem("jwtToken", token);
+      // Navigate to the OTP page
+      navigate("/otppage");
       toast.success("Registration successful!");
       reset();
       clearErrors();
-    } catch (err) {
-      setError("apiError", {
-        type: "manual",
-        message: err.response?.data?.message || "Something went wrong!",
-      });
-      toast.error("Registration failed!");
     }
+    
+  } catch (err) {
+    setError("apiError", {
+      type: "manual",
+      message: err.response?.data?.message || "Something went wrong!",
+    });
+    toast.error("Registration failed!");
+  } finally {
     setLoading(false);
-  };
+  }
+};
 
   return (
     <div >

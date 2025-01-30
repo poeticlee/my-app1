@@ -30,6 +30,8 @@ const WelcomeForm = () => {
       if (response.status === 200) {
         //save the token in the localstorage
         localStorage.setItem("token", JSON.stringify(response.data.token));
+         //const token = response.data.token; // Get the token from API response
+        //localStorage.setItem("authToken", token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
 
 
