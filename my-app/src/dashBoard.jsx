@@ -114,15 +114,15 @@ console.log(data)
     return <p>Loading...</p>;
   }
 
-  const handleShare = (event) => {
-    const eventId = event.id; // Assuming each event has a unique `id`
+  const handleShare = (events) => {
+    const eventId = events.id; // Assuming each event has a unique `id`
     const shareUrl = `${window.location.origin}/event/${eventId}`; // Example URL
   
     if (navigator.share) {
       navigator
         .share({
-          title: `You're Invited: ${event.title}`,
-          text: `Join the event: ${event.title}. Click the link to accept or decline.`,
+          title: `You're Invited: ${events.title}`,
+          text: `Join the event: ${events.title}. Click the link to accept or decline.`,
           url: shareUrl,
         })
         .catch((error) => console.error("Error sharing:", error));
@@ -130,6 +130,7 @@ console.log(data)
       navigator.clipboard.writeText(shareUrl);
       alert("Event link copied to clipboard!");
     }
+    console.log(event.id)
   };
   
   // Table Columns

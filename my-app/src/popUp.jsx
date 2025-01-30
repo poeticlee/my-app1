@@ -5,6 +5,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { v4 as uuidv4 } from "uuid"; // Import UUID
 
 
 // eslint-disable-next-line react/prop-types
@@ -44,7 +45,10 @@ export default function PopUp( {trigger,triggerFn,createEventTrigger}) {
 
   const onSubmit = async (data) => {
     try {
+      const eventId = uuidv4(); // Generate a unique ID
+
       const formData = new FormData();
+      formData.append("id", eventId); // Attach unique ID
       formData.append("capacity", data.capacity);
       formData.append("description", data.description);
       formData.append("date", data.eventDate);
@@ -66,7 +70,8 @@ export default function PopUp( {trigger,triggerFn,createEventTrigger}) {
         }
       );
 
-      toast.success("Event created Successfully!");
+      toast.success(`Event created Successfully! ID: ${eventId}`);
+
 
       createEventTrigger()
       togglePopup()
